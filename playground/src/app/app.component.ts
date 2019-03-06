@@ -12,20 +12,25 @@ export class AppComponent {
   constructor(public dialog: TwkPopupFactoryDialogService) {
     const ref = this.dialog.open(ExampleComponent, {
       data: {
-        header: [
-          {title: '1st', icon: 'home', action: { methodName: 'log', methodParam: '1st' } , disabled: true},
-          {title: '2nd', icon: 'favorite', action: { methodName: 'log', methodParam: '2nd' }, disabled: false},
-          {title: '3rd', icon: 'alarm', action: { methodName: 'log', methodParam: '3rd' }, disabled: false}
-          ],
+        header: {
+          title: '',
+          buttons: [
+            {title: '1st', icon: 'home', action: {methodName: 'log', methodParam: '1st'}, disabled: true},
+            {title: '2nd', icon: 'favorite', action: {methodName: 'log', methodParam: '2nd'}, disabled: false},
+            {title: '3rd', icon: 'alarm', action: {methodName: 'log', methodParam: '3rd'}, disabled: false}
+          ]
+        },
         content: {
           message: 'I am totally dynamic!',
           imageSrc: '../assets/robot.jpg',
         },
-        footer: [
-          {title: '1st', icon: 'home', action: { methodName: 'log', methodParam: '1st' }, disabled: true},
-          {title: '2nd', icon: 'favorite', action: { methodName: 'log', methodParam: '' }, disabled: false},
-          {title: '3rd', icon: 'alarm', action: { methodName: 'log', methodParam: '3rd' }, disabled: false}
-        ],
+        footer: {
+          buttons:[
+            {title: '1st', icon: 'home', action: {methodName: 'log', methodParam: '1st'}, disabled: true},
+            {title: '2nd', icon: 'favorite', action: {methodName: 'log', methodParam: ''}, disabled: false},
+            {title: '3rd', icon: 'alarm', action: {methodName: 'log', methodParam: '3rd'}, disabled: false}
+          ]
+        },
       },
     });
 

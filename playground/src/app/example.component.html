@@ -1,6 +1,7 @@
 <div mat-dialog-title>
-  <div *ngIf="config.data.header !== undefined || isEmpty(config.data.header)">
-    <button mat-button *ngFor="let btn of config.data.footer"
+  <h3 *ngIf="config.data.header.title !== undefined || config.data.header.title !== ''">{{config.data.header.title}}</h3>
+  <div *ngIf="config.data.header.buttons !== undefined || isEmpty(config.data.header.buttons)">
+    <button mat-button *ngFor="let btn of config.data.header.buttons"
             [disabled]="btn.disabled"
             (click)="call(btn.action)">
     <mat-icon *ngIf="btn.icon !== undefined">{{btn.icon}}</mat-icon>
@@ -13,8 +14,8 @@
   <label mat-line  *ngIf="config.data.content.message !== undefined || config.data.content.message !== ''">{{config.data.content.message}}</label>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <div *ngIf="config.data.footer !== undefined || isEmpty(config.data.footer)">
-    <button mat-button *ngFor="let btn of config.data.footer"
+  <div *ngIf="config.data.footer.buttons !== undefined || isEmpty(config.data.footer.buttons)">
+    <button mat-button *ngFor="let btn of config.data.footer.buttons"
             [disabled]="btn.disabled"
             (click)="call(btn.action)">
       <mat-icon *ngIf="btn.icon !== undefined">{{btn.icon}}</mat-icon>
