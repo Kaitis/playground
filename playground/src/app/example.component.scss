@@ -1,0 +1,35 @@
+:host {
+  font-size: 32px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.mat-dialog-title{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.mat-dialog-content {
+  display: flex;
+  flex: 1;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.mat-dialog-content>label{
+  margin: auto;
+}
+
+.mat-dialog-actions {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+}
