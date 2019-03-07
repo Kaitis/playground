@@ -22,3 +22,15 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($candy-app-theme);
+
+
+.md-drppicker.shown.drops-down-right {
+  background-color: black;
+}
+
+.md-drppicker .calendar-table {
+  background-color: black!important;
+  border: 1px solid  aqua!important;
+}
+
+

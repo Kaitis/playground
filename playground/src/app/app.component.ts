@@ -9,6 +9,9 @@ import {TwkPopupFactoryDialogService} from "./twk-popup-factory/twk-popup-factor
 })
 export class AppComponent {
   title = 'playground';
+  start;
+  end;
+
   constructor(public dialog: TwkPopupFactoryDialogService) {
   }
 
