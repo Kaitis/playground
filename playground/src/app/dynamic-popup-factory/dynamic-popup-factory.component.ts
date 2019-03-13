@@ -9,26 +9,26 @@ import {
   ViewChild
 } from '@angular/core';
 import {Subject} from 'rxjs';
-import {TwkPopupFactoryDialogRef} from './twk-popup-factory-dialog-ref';
-import {TwkPopupFactoryInsertionDirective} from "./twk-popup-factory-insertion.directive";
+import {DynamicPopupFactoryDialogRef} from './dynamic-popup-factory-dialog-ref';
+import {DynamicPopupFactoryInsertionDirective} from "./dynamic-popup-factory-insertion.directive";
 
 @Component({
   selector: 'app-twk-popup',
-  templateUrl: './twk-popup-factory-dialog.component.html',
-  styleUrls: ['./twk-popup-factory-dialog.component.scss']
+  templateUrl: './dynamic-popup-factory.component.html',
+  styleUrls: ['./dynamic-popup-factory.component.scss']
 })
-export class TwkPopupFactoryDialogComponent implements AfterViewInit, OnDestroy {
+export class DynamicPopupFactoryComponent implements AfterViewInit, OnDestroy {
   componentRef: ComponentRef<any>;
 
-  @ViewChild(TwkPopupFactoryInsertionDirective)
-  insertionPoint: TwkPopupFactoryInsertionDirective;
+  @ViewChild(DynamicPopupFactoryInsertionDirective)
+  insertionPoint: DynamicPopupFactoryInsertionDirective;
 
   private readonly _onClose = new Subject<any>();
   public onClose = this._onClose.asObservable();
 
   childComponentType: Type<any>;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private cd: ChangeDetectorRef, private dialogRef: TwkPopupFactoryDialogRef) {}
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, private cd: ChangeDetectorRef, private dialogRef: DynamicPopupFactoryDialogRef) {}
 
   ngAfterViewInit() {
     this.loadChildComponent(this.childComponentType);

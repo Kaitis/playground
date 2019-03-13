@@ -3,6 +3,6 @@ import {Directive, ViewContainerRef} from '@angular/core';
 @Directive({
   selector: '[twkPopupInsertion]'
 })
-export class TwkPopupFactoryInsertionDirective {
+export class DynamicPopupFactoryInsertionDirective {
   constructor(public viewContainerRef: ViewContainerRef) {}
 }

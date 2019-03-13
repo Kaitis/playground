@@ -3,18 +3,33 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {ExampleComponent} from "./example.component";
-import {TwkPopupFactoryDialogModule} from "./twk-popup-factory/twk-popup-factory-dialog.module";
-import {MatButtonModule, MatDialogModule, MatIconModule} from "@angular/material";
+import {DynamicPopupFactoryModule} from "./dynamic-popup-factory/dynamic-popup-factory.module";
+import {MatButtonModule, MatDialogModule, MatIconModule, MatTableModule} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgxDaterangepickerMd} from "ngx-daterangepicker-material";
+import {FormlyModule} from '@ngx-formly/core';
+import {FormlyMaterialModule} from '@ngx-formly/material';
+import {DynamicTableComponent} from './dynamic-table/dynamic-table.component';
+import {DynamicFormComponent} from './dynamic-form/dynamic-form.component';
 
 @NgModule({
   declarations: [
-    AppComponent, ExampleComponent
+    AppComponent, ExampleComponent, DynamicTableComponent, DynamicFormComponent
   ],
   imports: [
-    BrowserModule, TwkPopupFactoryDialogModule, MatDialogModule, MatButtonModule,MatIconModule,BrowserAnimationsModule, FormsModule, ReactiveFormsModule,  NgxDaterangepickerMd.forRoot()
+    BrowserModule,
+    DynamicPopupFactoryModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTableModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FormlyModule.forRoot(),
+    FormlyMaterialModule,
+    NgxDaterangepickerMd.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

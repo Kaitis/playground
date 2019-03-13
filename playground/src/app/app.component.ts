@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ExampleComponent} from "./example.component";
-import {TwkPopupFactoryDialogService} from "./twk-popup-factory/twk-popup-factory-dialog.service";
+import {DynamicPopupFactoryService} from "./dynamic-popup-factory/dynamic-popup-factory.service";
 
 @Component({
   selector: 'app-root',
@@ -11,8 +11,15 @@ export class AppComponent {
   title = 'playground';
   start;
   end;
+  user: User = new User();
+  userData = [
+    {id: '1', name: 'User1', email:'user1@email.com', enabled: true },
+    {id: '2', name: 'User2', email:'user2@email.com', enabled: false },
+    {id: '3', name: 'User3', email:'user3@email.com', enabled: true},
+    {id: '4', name: 'User4', email:'user4@email.com', enabled: false}
+  ];
 
-  constructor(public dialog: TwkPopupFactoryDialogService) {
+  constructor(public dialog: DynamicPopupFactoryService) {
   }
 
   openDialogWithImage() {
@@ -96,3 +103,17 @@ export class AppComponent {
   }
 }
 
+export class User {
+  id?: string = '';
+  name?: string = '';
+  email?: string = '';
+  enabled?: boolean = true;
+  blah: string = '';
+  blal: number = 0;
+  bool2: boolean = false;
+  status: UserStatusEnum = UserStatusEnum.S1;
+}
+
+export enum UserStatusEnum {
+  S1, S2, S3
+}

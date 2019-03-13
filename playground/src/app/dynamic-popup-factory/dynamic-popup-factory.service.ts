@@ -7,21 +7,21 @@ import {
   Injector,
   Type
 } from '@angular/core';
-import {TwkPopupFactoryDialogModule} from './twk-popup-factory-dialog.module';
-import {TwkPopupFactoryDialogComponent} from './twk-popup-factory-dialog.component';
-import {TwkPopupFactoryDialogInjector} from './twk-popup-factory-dialog-injector';
-import {TwkPopupFactoryDialogConfig} from './twk-popup-factory-dialog-config';
-import {TwkPopupFactoryDialogRef} from './twk-popup-factory-dialog-ref';
+import {DynamicPopupFactoryModule} from './dynamic-popup-factory.module';
+import {DynamicPopupFactoryComponent} from './dynamic-popup-factory.component';
+import {DynamicPopupFactoryInjector} from './dynamic-popup-factory-injector';
+import {DynamicPopupFactoryConfig} from './dynamic-popup-factory-config';
+import {DynamicPopupFactoryDialogRef} from './dynamic-popup-factory-dialog-ref';
 
 @Injectable({
-  providedIn: TwkPopupFactoryDialogModule
+  providedIn: DynamicPopupFactoryModule
 })
-export class TwkPopupFactoryDialogService {
-  dialogComponentRef: ComponentRef<TwkPopupFactoryDialogComponent>;
+export class DynamicPopupFactoryService {
+  dialogComponentRef: ComponentRef<DynamicPopupFactoryComponent>;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver, private appRef: ApplicationRef, private injector: Injector) {}
 
-  public open(componentType: Type<any>, config: TwkPopupFactoryDialogConfig) {
+  public open(componentType: Type<any>, config: DynamicPopupFactoryConfig) {
     const dialogRef = this.appendDialogComponentToBody(config);
 
     this.dialogComponentRef.instance.childComponentType = componentType;
@@ -29,20 +29,20 @@ export class TwkPopupFactoryDialogService {
     return dialogRef;
   }
 
-  private appendDialogComponentToBody(config: TwkPopupFactoryDialogConfig) {
+  private appendDialogComponentToBody(config: DynamicPopupFactoryConfig) {
     const map = new WeakMap();
-    map.set(TwkPopupFactoryDialogConfig, config);
+    map.set(DynamicPopupFactoryConfig, config);
 
-    const dialogRef = new TwkPopupFactoryDialogRef();
-    map.set(TwkPopupFactoryDialogRef, dialogRef);
+    const dialogRef = new DynamicPopupFactoryDialogRef();
+    map.set(DynamicPopupFactoryDialogRef, dialogRef);
 
     const sub = dialogRef.afterClosed.subscribe(() => {
       this.removeDialogComponentFromBody();
       sub.unsubscribe();
     });
 
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(TwkPopupFactoryDialogComponent);
-    const componentRef = componentFactory.create(new TwkPopupFactoryDialogInjector(this.injector, map));
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(DynamicPopupFactoryComponent);
+    const componentRef = componentFactory.create(new DynamicPopupFactoryInjector(this.injector, map));
 
     this.appRef.attachView(componentRef.hostView);
 

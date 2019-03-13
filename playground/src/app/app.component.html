@@ -3,11 +3,11 @@
   <button mat-raised-button (click)="openDialogWithOnlyImage()">Image</button>
   <button mat-raised-button (click)="openDialogWithImage()">Full</button>
 </div>
+<br/>
+<div class="container">
+  <app-dynamic-form [model]="user"></app-dynamic-form>
+</div>
 
-<input type="text" matInput id="dateRange"
-       ngxDaterangepickerMd
-       [locale]="{applyLabel: 'ok', format: 'DD-MM-YYYY'}"
-       startKey="start"
-       endKey="end"
-       [(ngModel)]="selected"
-       name="daterange"/>
+<div class="full-width">
+  <app-dynamic-table [type]="user" [data]="userData"></app-dynamic-table>
+</div>

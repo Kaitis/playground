@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {TwkPopupFactoryDialogConfig} from "./twk-popup-factory/twk-popup-factory-dialog-config";
-import {TwkPopupFactoryDialogRef} from "./twk-popup-factory/twk-popup-factory-dialog-ref";
+import {DynamicPopupFactoryConfig} from "./dynamic-popup-factory/dynamic-popup-factory-config";
+import {DynamicPopupFactoryDialogRef} from "./dynamic-popup-factory/dynamic-popup-factory-dialog-ref";
 
 
 @Component({
@@ -9,7 +9,7 @@ import {TwkPopupFactoryDialogRef} from "./twk-popup-factory/twk-popup-factory-di
   styleUrls: ['./example.component.scss']
 })
 export class ExampleComponent {
-  constructor(public config: TwkPopupFactoryDialogConfig, public dialog: TwkPopupFactoryDialogRef) {}
+  constructor(public config: DynamicPopupFactoryConfig, public dialog: DynamicPopupFactoryDialogRef) {}
 
   onClose(param:any) {
     this.dialog.close(param);

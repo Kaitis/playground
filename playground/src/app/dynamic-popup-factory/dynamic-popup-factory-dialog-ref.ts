@@ -1,6 +1,6 @@
 import {Observable, Subject} from 'rxjs';
 
-export class TwkPopupFactoryDialogRef {
+export class DynamicPopupFactoryDialogRef {
   constructor() {}
 
   close(result?: any) {

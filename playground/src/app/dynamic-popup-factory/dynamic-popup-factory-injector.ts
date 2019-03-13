@@ -1,6 +1,6 @@
 import {InjectFlags, InjectionToken, Injector, Type} from '@angular/core';
 
-export class TwkPopupFactoryDialogInjector implements Injector {
+export class DynamicPopupFactoryInjector implements Injector {
   constructor(private _parentInjector: Injector, private _additionalTokens: WeakMap<any, any>) {}
 
   get<T>(token: Type<T> | InjectionToken<T>, notFoundValue?: T, flags?: InjectFlags): T;
