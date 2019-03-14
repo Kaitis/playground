@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {ExampleComponent} from "./example.component";
 import {DynamicPopupFactoryService} from "./dynamic-popup-factory/dynamic-popup-factory.service";
+import {MatDialog} from "@angular/material";
+import {DynamicFormComponent} from "./dynamic-form/dynamic-form.component";
 
 @Component({
   selector: 'app-root',
@@ -11,19 +13,16 @@ export class AppComponent {
   title = 'playground';
   start;
   end;
-  user: User = new User();
-  userData = [
-    {id: '1', name: 'User1', email:'user1@email.com', enabled: true },
-    {id: '2', name: 'User2', email:'user2@email.com', enabled: false },
-    {id: '3', name: 'User3', email:'user3@email.com', enabled: true},
-    {id: '4', name: 'User4', email:'user4@email.com', enabled: false}
-  ];
+  type:any = new User();
+  typeStr = 'activity';
+  data = [];
 
-  constructor(public dialog: DynamicPopupFactoryService) {
+  constructor(public popup: DynamicPopupFactoryService, public dialog: MatDialog) {
+    this.data = this.getData('user')
   }
 
   openDialogWithImage() {
-    const ref = this.dialog.open(ExampleComponent, {
+    const ref = this.popup.open(ExampleComponent, {
       data: {
         header: {
           title: '',
@@ -53,7 +52,7 @@ export class AppComponent {
   }
 
   openBasicDialog() {
-    const ref1 = this.dialog.open(ExampleComponent, {
+    const ref1 = this.popup.open(ExampleComponent, {
       data: {
         header: {
           title: 'I am a Header with no buttons :(',
@@ -81,7 +80,7 @@ export class AppComponent {
   }
 
   openDialogWithOnlyImage() {
-    const ref1 = this.dialog.open(ExampleComponent, {
+    const ref1 = this.popup.open(ExampleComponent, {
       data: {
         header: {
           title: '',
@@ -101,7 +100,49 @@ export class AppComponent {
       console.log('Dialog closed', result);
     });
   }
+
+  openForm(): void  {
+    const ref = this.dialog.open(DynamicFormComponent, {
+      width: '650px',
+      data: {type: this.typeStr.toLowerCase() === 'activity' ? new User() : new Activity()}});
+
+    this.data =  this.getData( this.typeStr.toLowerCase() === 'activity' ? 'user' : 'activity');
+    ref.afterClosed().subscribe(result => {
+      console.log('The dialog was closed. Result:' + result);
+    });
+  }
+
+  getData(type: string) {
+    if (type.toLowerCase() === 'user')
+      return [
+          {id: '1', name: 'User1', email:'user1@email.com', enabled: true },
+          {id: '2', name: 'User2', email:'user2@email.com', enabled: false },
+          {id: '3', name: 'User3', email:'user3@email.com', enabled: true},
+          {id: '4', name: 'User4', email:'user4@email.com', enabled: false}];
+    else
+      return [
+        {id: '1', name: 'Activity1', location:'Limassol', enabled: true },
+        {id: '2', name: 'Activity2', location:'Nicosia', enabled: true },
+        {id: '3', name: 'Activity3', location:'Limassol', enabled: true},
+        {id: '4', name: 'Activity4', location:'Limassol', enabled: false}]
+
+  }
+
+  switchData() {
+    console.log("Switching to ", this.typeStr);
+    if(this.typeStr === 'user' ) {
+      this.data = this.getData("user");
+      this.type = new Activity();
+      this.typeStr = 'activity'
+    } else {
+      this.data = this.getData("activity")
+      this.type = new User();
+      this.typeStr = 'user'
+    }
+  }
 }
+
+
 
 export class User {
   id?: string = '';
@@ -113,6 +154,17 @@ export class User {
   bool2: boolean = false;
   status: UserStatusEnum = UserStatusEnum.S1;
 }
+
+export class Activity {
+  id?: string = '';
+  name?: string = '';
+  location?: string = '';
+  public?: boolean = true;
+  blah: string = '';
+  blal: number = 0;
+  bool2: boolean = false;
+}
+
 
 export enum UserStatusEnum {
   S1, S2, S3

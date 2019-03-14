@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {MatMenuTrigger} from "@angular/material";
 
 @Component({
   selector: 'app-dynamic-table',
@@ -9,6 +10,8 @@ export class DynamicTableComponent implements OnInit {
 
   @Input() type: any;
   @Input() data: any;
+
+  @ViewChild('matMenuTrigger') matMenuTrigger: MatMenuTrigger;
 
   columns: string[] = [];
   columnsToDisplay: string[] = [];
@@ -23,4 +26,8 @@ export class DynamicTableComponent implements OnInit {
     console.log("Columns:", this.columns);
   }
 
+  openMenu(row: any) {
+    console.log(row);
+    this.matMenuTrigger.openMenu();
+  }
 }

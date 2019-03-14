@@ -9,4 +9,12 @@ p {
   margin: 0px!important;
 }
 
-
+.align-right {
+  align-items: flex-end;
+  justify-content: right !important;
+}
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}

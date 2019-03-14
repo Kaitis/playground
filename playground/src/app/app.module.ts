@@ -4,7 +4,14 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {ExampleComponent} from "./example.component";
 import {DynamicPopupFactoryModule} from "./dynamic-popup-factory/dynamic-popup-factory.module";
-import {MatButtonModule, MatDialogModule, MatIconModule, MatTableModule} from "@angular/material";
+import {
+  MatButtonModule,
+  MatDialogModule,
+  MatIconModule,
+  MatMenuModule,
+  MatTableModule,
+  MatToolbarModule
+} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgxDaterangepickerMd} from "ngx-daterangepicker-material";
@@ -15,7 +22,7 @@ import {DynamicFormComponent} from './dynamic-form/dynamic-form.component';
 
 @NgModule({
   declarations: [
-    AppComponent, ExampleComponent, DynamicTableComponent, DynamicFormComponent
+    AppComponent, ExampleComponent, DynamicFormComponent, DynamicTableComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +31,8 @@ import {DynamicFormComponent} from './dynamic-form/dynamic-form.component';
     MatButtonModule,
     MatIconModule,
     MatTableModule,
+    MatToolbarModule,
+    MatMenuModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -33,6 +42,6 @@ import {DynamicFormComponent} from './dynamic-form/dynamic-form.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [ExampleComponent]
+  entryComponents: [ExampleComponent, DynamicFormComponent]
 })
 export class AppModule { }

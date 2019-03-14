@@ -1,8 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import {FormGroup} from "@angular/forms";
 import {FormlyFieldConfig} from "@ngx-formly/core";
-import {User} from "../app.component";
 import {timer} from "rxjs";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 
 @Component({
   selector: 'app-dynamic-form',
@@ -11,20 +11,21 @@ import {timer} from "rxjs";
 })
 export class DynamicFormComponent implements OnInit {
 
-  type = new User();
-
   @Input() model;
+
   form = new FormGroup({});
   fields: FormlyFieldConfig[] = [];
 
   submit(model) {
     console.log(model);
+    this.dialogRef.close(model);
   }
 
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<DynamicFormComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: {type: any}) { }
 
   ngOnInit() {
-    this.fields = this.getFormlyFields(this.type);
+    this.fields = this.getFormlyFields(this.data.type);
   }
 
   private getFormlyFields<T>(obj: T): FormlyFieldConfig[]{
@@ -97,5 +98,9 @@ export class DynamicFormComponent implements OnInit {
         }
       };
     }
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }
